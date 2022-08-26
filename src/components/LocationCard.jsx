@@ -13,9 +13,6 @@ const style = {
     padding: '18px',
     maxWidth: '1000px',
   },
-  flex: {
-    display: 'flex',
-  },
   firstLevel: {
     padding: '18px',
     color: 'white',
@@ -45,7 +42,7 @@ function LocationItem(props) {
       <Row justify="space-between" align='middle'>
         <Col>{icon}</Col>
         <Col>
-          <Space style={style.flex} size="1" direction="vertical" align="end">
+          <Space size="1" direction="vertical" align="end">
             <Title style={style.itemText} level={3}>
               {amount}
             </Title>
@@ -60,7 +57,7 @@ function LocationItem(props) {
 export default function LocationCard() {
   return (
     <Card style={style.container}>
-      <Space style={style.flex} size="middle" direction="vertical">
+      <Space size="middle" direction="vertical">
         <Row justify="space-between">
           <Col>
             <Title level={4}>Lokasi</Title>

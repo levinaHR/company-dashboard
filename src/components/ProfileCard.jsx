@@ -25,9 +25,6 @@ const style = {
   card: {
     maxWidth: '300px',
   },
-  flex: {
-    display: 'flex',
-  },
   container: {
     padding: '50px 18px 18px',
   },
@@ -62,7 +59,7 @@ function ProfileInfo(props) {
   const { title, body } = props;
 
   return (
-    <Space style={style.flex} size="1" direction="vertical">
+    <Space size="1" direction="vertical">
       <Text type="secondary">{title}</Text>
       {body}
     </Space>
@@ -80,7 +77,7 @@ export default function ProfileCard() {
       </div>
 
       <div style={style.container}>
-        <Space style={style.flex} size="1" direction="vertical" align="center">
+        <Space size="1" direction="vertical" align="center">
           <Title level={4}>Mitramas Infosys Global</Title>
           <Text type="secondary">Layanan IT</Text>
           <br />
@@ -90,7 +87,7 @@ export default function ProfileCard() {
         </Space>
         <br />
 
-        <Space style={style.flex} size="small" direction="vertical">
+        <Space size="small" direction="vertical">
           <ProfileInfo
             title="Status Perusahaan"
             body={
