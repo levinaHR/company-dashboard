@@ -24,13 +24,12 @@ const { Title, Text } = Typography;
 const style = {
   card: {
     maxWidth: '300px',
-    borderRadius: '12px',
   },
   flex: {
     display: 'flex',
   },
   container: {
-    padding: '50px 12px 12px',
+    padding: '50px 18px 18px',
   },
   imgContainer: {
     position: 'relative',
