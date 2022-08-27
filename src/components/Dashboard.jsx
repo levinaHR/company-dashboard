@@ -2,6 +2,7 @@ import { Col, Layout, Row } from 'antd';
 import React, { Fragment } from 'react';
 import ActivityCard from './ActivityCard';
 import BankCard from './BankCard';
+import CustomersCard from './CustomersCard';
 import LocationCard from './LocationCard';
 import ProfileCard from './ProfileCard';
 import RelationCard from './RelationCard';
@@ -19,26 +20,28 @@ const styles = {
 };
 
 export default function Dashboard() {
+  const gutter = [16, 16];
+
   return (
     <Layout style={styles.container}>
       {/* <Sider></Sider> */}
       <Layout>
         <Content style={styles.content}>
-          <Row gutter={[16, 16]}>
+          <Row gutter={gutter}>
             <Col span={24}>
-              <Row gutter={[16, 16]}>
+              <Row gutter={gutter}>
                 <Col sm={24} md={6}>
                   <ProfileCard />
                 </Col>
                 <Col sm={24} md={18}>
-                  <Row gutter={[16, 16]}>
+                  <Row gutter={gutter}>
                     <Col span={24}>
                       <LocationCard />
                     </Col>
                     <Col span={24}>
-                      <Row gutter={[16, 16]}>
+                      <Row gutter={gutter}>
                         <Col sm={24} md={12}>
-                          <Row gutter={[16, 16]}>
+                          <Row gutter={gutter}>
                             <Col span={24}>
                               <BankCard />
                             </Col>
@@ -57,6 +60,7 @@ export default function Dashboard() {
               </Row>
             </Col>
             <Col span={24}>
+              <CustomersCard />
             </Col>
           </Row>
         </Content>
