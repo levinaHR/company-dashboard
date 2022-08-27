@@ -18,56 +18,6 @@ const styles = {
   },
 };
 
-const columns = [
-  {
-    title: 'Name',
-    dataIndex: 'name',
-    key: 'name',
-  },
-  {
-    title: 'Address',
-    dataIndex: 'address',
-    key: 'address',
-  },
-  {
-    title: 'Country',
-    dataIndex: 'country',
-    key: 'country',
-  },
-  {
-    title: 'Phone Number',
-    dataIndex: 'phone_number',
-    key: 'phone_number',
-  },
-  {
-    title: 'Job Title',
-    dataIndex: 'job_title',
-    key: 'job_title',
-  },
-  {
-    title: 'Status',
-    dataIndex: 'status',
-    key: 'status',
-    render: (_, { status }) =>
-      status ? (
-        <Tag color="green">Active</Tag>
-      ) : (
-        <Tag color="volcano">Inactive</Tag>
-      ),
-  },
-  {
-    title: 'Action',
-    dataIndex: 'action',
-    key: 'action',
-    render: (_, { id }) => (
-      <Space>
-        <EditOutlined style={styles.editBtn} />
-        <DeleteOutlined style={styles.deleteBtn} />
-      </Space>
-    ),
-  },
-];
-
 export default function CustomersCard() {
   const [isLoading, setIsLoading] = useState(true);
   const [customerList, setCustomerList] = useState([]);
@@ -75,6 +25,62 @@ export default function CustomersCard() {
   const [isCreate, setIsCreate] = useState(false);
   const [isUpdate, setIsUpdate] = useState(false);
   const [isDelete, setIsDelete] = useState(false);
+
+  const columns = [
+    {
+      title: 'Name',
+      dataIndex: 'name',
+      key: 'name',
+    },
+    {
+      title: 'Address',
+      dataIndex: 'address',
+      key: 'address',
+    },
+    {
+      title: 'Country',
+      dataIndex: 'country',
+      key: 'country',
+    },
+    {
+      title: 'Phone Number',
+      dataIndex: 'phone_number',
+      key: 'phone_number',
+    },
+    {
+      title: 'Job Title',
+      dataIndex: 'job_title',
+      key: 'job_title',
+    },
+    {
+      title: 'Status',
+      dataIndex: 'status',
+      key: 'status',
+      render: (_, { status }) =>
+        status ? (
+          <Tag color="green">Active</Tag>
+        ) : (
+          <Tag color="volcano">Inactive</Tag>
+        ),
+    },
+    {
+      title: 'Action',
+      dataIndex: 'action',
+      key: 'action',
+      render: (_, { id }) => (
+        <Space>
+          <EditOutlined
+            style={styles.editBtn}
+            onClick={() => handleUpdate(id)}
+          />
+          <DeleteOutlined
+            style={styles.deleteBtn}
+            onClick={() => handleDelete(id)}
+          />
+        </Space>
+      ),
+    },
+  ];
 
   async function loadAllCustomers() {
     try {
@@ -98,6 +104,15 @@ export default function CustomersCard() {
       status: false,
     });
     setIsCreate(true);
+  }
+
+  function handleUpdate(id) {
+    setCustomer(customerList.find((c) => c.id === id));
+    setIsUpdate(true);
+  }
+
+  function handleDelete(id) {
+    console.log(id);
   }
 
   function handleCancel() {

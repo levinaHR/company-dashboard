@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import APIConfig from '../api/APIConfig';
 
 function Capitalize(str) {
-  const words = str.split("_")
+  const words = str.split('_');
   return words
     .map((word) => {
       return word[0].toUpperCase() + word.substring(1);
@@ -17,12 +17,11 @@ export default function CustomersModalForm(props) {
     visible,
     isCreate,
     isUpdate,
-    onSubmit,
     onCancel,
-    refreshData
+    refreshData,
   } = props;
 
-  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [fields, setFields] = useState([
     {
       name: ['name'],
@@ -56,7 +55,7 @@ export default function CustomersModalForm(props) {
 
   function onFinish(values) {
     console.log('Success:', values);
-    handleSubmit(values)
+    handleSubmit(values);
   }
 
   function onFinishFailed(errorInfo) {
@@ -65,15 +64,24 @@ export default function CustomersModalForm(props) {
 
   async function handleSubmit(values) {
     try {
-      setIsSubmitting(true)
-      const { data } = await APIConfig.post("/customers", values)
-      console.log(data)
-      setIsSubmitting(false)
-      onCancel()
-      refreshData()
+      setIsSubmitting(true);
+      if (isCreate) {
+        const { data } = await APIConfig.post('/customers', values);
+        console.log(data);
+      }
+      if (isUpdate) {
+        const { data } = await APIConfig.put('/customers', {
+          id: customer.id,
+          ...values,
+        });
+        console.log(data);
+      }
+      setIsSubmitting(false);
+      onCancel();
+      refreshData();
     } catch (e) {
-      console.log(e)
-      setIsSubmitting(false)
+      console.log(e);
+      setIsSubmitting(false);
     }
   }
 
@@ -81,7 +89,6 @@ export default function CustomersModalForm(props) {
     <Modal
       title={isCreate ? 'Tambah Pelanggan Baru' : 'Ubah Pelanggan'}
       visible={visible}
-      // onOk={onSubmit}
       onCancel={onCancel}
       footer={[
         <Button key="back" onClick={onCancel}>
@@ -93,7 +100,6 @@ export default function CustomersModalForm(props) {
           htmlType="submit"
           type="primary"
           loading={isSubmitting}
-          // onClick={onSubmit}
         >
           Simpan
         </Button>,
