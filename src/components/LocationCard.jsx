@@ -8,7 +8,7 @@ import React from 'react';
 
 const { Title, Text } = Typography;
 
-const style = {
+const styles = {
   container: {
     padding: '18px',
     maxWidth: '1000px',
@@ -35,10 +35,10 @@ const style = {
 };
 
 function LocationItem(props) {
-  const { icon, amount, place, sty } = props;
+  const { icon, amount, place, style } = props;
 
   return (
-    <Card style={sty}>
+    <Card style={style}>
       <Row justify="space-between" align='middle'>
         <Col>{icon}</Col>
         <Col>
@@ -56,7 +56,7 @@ function LocationItem(props) {
 
 export default function LocationCard() {
   return (
-    <Card style={style.container}>
+    <Card style={styles.container}>
       <Space size="middle" direction="vertical">
         <Row justify="space-between">
           <Col>
@@ -69,7 +69,7 @@ export default function LocationCard() {
         <Row gutter={[8, 8]}>
           <Col xs={24} sm={8}>
             <LocationItem
-              sty={style.firstLevel}
+              sty={styles.firstLevel}
               icon={<HomeWorkOutlined fontSize="large" />}
               amount="20"
               place="Induk"
@@ -77,7 +77,7 @@ export default function LocationCard() {
           </Col>
           <Col xs={24} sm={8}>
             <LocationItem
-              sty={style.secondLevel}
+              style={styles.secondLevel}
               icon={<BuildOutlined fontSize="large" />}
               amount="3"
               place="Sub Lokasi Level 1"
@@ -85,7 +85,7 @@ export default function LocationCard() {
           </Col>
           <Col xs={24} sm={8}>
             <LocationItem
-              sty={style.thirdLevel}
+              sty={styles.thirdLevel}
               icon={<WarehouseOutlined fontSize="large" />}
               amount="1"
               place="Sub Lokasi Level 2"

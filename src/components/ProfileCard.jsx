@@ -5,11 +5,9 @@ import {
   PhoneOutlined,
 } from '@ant-design/icons';
 import {
-  Avatar,
   Button,
   Card,
   Col,
-  Image,
   Row,
   Space,
   Switch,
@@ -21,7 +19,7 @@ import React, { useState } from 'react';
 
 const { Title, Text } = Typography;
 
-const style = {
+const styles = {
   card: {
     maxWidth: '300px',
   },
@@ -70,18 +68,18 @@ export default function ProfileCard() {
   const [isActive, setIsActive] = useState(true);
 
   return (
-    <Card style={style.card}>
-      <div style={style.imgContainer}>
-        <img style={style.banner} src={Banner} alt="banner" />
-        <img style={style.profpic} src={MigLogo} alt="profpic" />
+    <Card style={styles.card}>
+      <div style={styles.imgContainer}>
+        <img style={styles.banner} src={Banner} alt="banner" />
+        <img style={styles.profpic} src={MigLogo} alt="profpic" />
       </div>
 
-      <div style={style.container}>
+      <div style={styles.container}>
         <Space size="1" direction="vertical" align="center">
           <Title level={4}>Mitramas Infosys Global</Title>
           <Text type="secondary">Layanan IT</Text>
           <br />
-          <Button style={style.btnLink} type="link" icon={<EditOutlined />}>
+          <Button style={styles.btnLink} type="link" icon={<EditOutlined />}>
             Sunting profil
           </Button>
         </Space>
@@ -94,7 +92,7 @@ export default function ProfileCard() {
               <Row justify="space-between">
                 <Col>
                   {isActive ? (
-                    <Text style={style.primary} strong>
+                    <Text style={styles.primary} strong>
                       Aktif
                     </Text>
                   ) : (
@@ -127,8 +125,8 @@ export default function ProfileCard() {
           <ProfileInfo
             title="E-Mail"
             body={
-              <Button style={style.btnLink} type="link" icon={<MailOutlined />}>
-                <Text style={style.primary} underline>
+              <Button style={styles.btnLink} type="link" icon={<MailOutlined />}>
+                <Text style={styles.primary} underline>
                   mig@mitrasolusi.group
                 </Text>
               </Button>
@@ -138,7 +136,7 @@ export default function ProfileCard() {
             title="No. Telp"
             body={
               <Button
-                style={style.btnLink}
+                style={styles.btnLink}
                 type="link"
                 icon={<PhoneOutlined />}
               >
@@ -150,11 +148,11 @@ export default function ProfileCard() {
             title="Situs Web"
             body={
               <Button
-                style={style.btnLink}
+                style={styles.btnLink}
                 type="link"
                 icon={<GlobalOutlined />}
               >
-                <Text style={style.primary} underline>
+                <Text style={styles.primary} underline>
                   mitramas.com
                 </Text>
               </Button>
