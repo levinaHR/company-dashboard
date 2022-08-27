@@ -1,4 +1,5 @@
 import React, { Fragment } from 'react'
+import ActivityCard from './ActivityCard'
 import BankCard from './BankCard'
 import LocationCard from './LocationCard'
 import ProfileCard from './ProfileCard'
@@ -10,7 +11,8 @@ export default function Dashboard() {
       {/* <ProfileCard /> */}
       {/* <LocationCard /> */}
       {/* <BankCard /> */}
-      <RelationCard />
+      {/* <RelationCard /> */}
+      <ActivityCard />
     </Fragment>
   )
 }
