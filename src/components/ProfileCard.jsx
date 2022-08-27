@@ -21,7 +21,8 @@ const { Title, Text } = Typography;
 
 const styles = {
   card: {
-    maxWidth: '300px',
+    // minWidth: '300px',
+    height: '100%'
   },
   container: {
     padding: '50px 18px 18px',

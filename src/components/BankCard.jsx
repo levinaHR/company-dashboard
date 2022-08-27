@@ -7,7 +7,7 @@ const { Title, Text } = Typography;
 const styles = {
   container: {
     padding: '18px',
-    maxWidth: '424px',
+    // maxWidth: '424px',
   },
   imgContainer: {
     position: 'relative',

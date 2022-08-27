@@ -11,7 +11,7 @@ const { Title, Text } = Typography;
 const styles = {
   container: {
     padding: '18px',
-    maxWidth: '1000px',
+    // maxWidth: '1000px',
   },
   firstLevel: {
     padding: '18px',
@@ -69,7 +69,7 @@ export default function LocationCard() {
         <Row gutter={[8, 8]}>
           <Col xs={24} sm={8}>
             <LocationItem
-              sty={styles.firstLevel}
+              style={styles.firstLevel}
               icon={<HomeWorkOutlined fontSize="large" />}
               amount="20"
               place="Induk"
@@ -85,7 +85,7 @@ export default function LocationCard() {
           </Col>
           <Col xs={24} sm={8}>
             <LocationItem
-              sty={styles.thirdLevel}
+              style={styles.thirdLevel}
               icon={<WarehouseOutlined fontSize="large" />}
               amount="1"
               place="Sub Lokasi Level 2"

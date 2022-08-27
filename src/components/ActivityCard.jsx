@@ -6,7 +6,8 @@ const { Title, Text } = Typography;
 const styles = {
   container: {
     padding: '18px',
-    maxWidth: '484px',
+    // maxWidth: '484px',
+    height: '100%'
   },
 };
 
