@@ -4,6 +4,7 @@ import BankCard from './BankCard'
 import LocationCard from './LocationCard'
 import ProfileCard from './ProfileCard'
 import RelationCard from './RelationCard'
+import Topbar from './Topbar'
 
 export default function Dashboard() {
   return (
@@ -12,7 +13,8 @@ export default function Dashboard() {
       {/* <LocationCard /> */}
       {/* <BankCard /> */}
       {/* <RelationCard /> */}
-      <ActivityCard />
+      {/* <ActivityCard /> */}
+      <Topbar />
     </Fragment>
   )
 }
