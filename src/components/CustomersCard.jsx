@@ -2,6 +2,7 @@ import { DeleteOutlined, EditOutlined, PlusOutlined } from '@ant-design/icons';
 import { Button, Card, Col, Row, Space, Table, Tag, Typography } from 'antd';
 import React, { Fragment, useEffect, useState } from 'react';
 import APIConfig from '../api/APIConfig';
+import ConfirmationModal from './ConfirmationModal';
 import CustomersModalForm from './CustomersModalForm';
 
 const { Title, Text } = Typography;
@@ -112,12 +113,14 @@ export default function CustomersCard() {
   }
 
   function handleDelete(id) {
-    console.log(id);
+    setCustomer(customerList.find((c) => c.id === id));
+    setIsDelete(true);
   }
 
   function handleCancel() {
     setIsCreate(false);
     setIsUpdate(false);
+    setIsDelete(false);
     setCustomer(null);
   }
 
@@ -162,6 +165,12 @@ export default function CustomersCard() {
           refreshData={loadAllCustomers}
         />
       )}
+      <ConfirmationModal
+        id={customer?.id}
+        visible={isDelete}
+        onCancel={handleCancel}
+        refreshData={loadAllCustomers}
+      />
     </Fragment>
   );
 }
