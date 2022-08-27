@@ -43,10 +43,10 @@ function LocationItem(props) {
         <Col>{icon}</Col>
         <Col>
           <Space size="1" direction="vertical" align="end">
-            <Title style={style.itemText} level={3}>
+            <Title style={styles.itemText} level={3}>
               {amount}
             </Title>
-            <Text style={style.itemText}>{place}</Text>
+            <Text style={styles.itemText}>{place}</Text>
           </Space>
         </Col>
       </Row>
