@@ -1,0 +1,17 @@
+{
+  "files": {
+    "main.css": "/company-dashboard/static/css/main.01e147cf.css",
+    "main.js": "/company-dashboard/static/js/main.886b10ea.js",
+    "static/js/787.32fb0cf0.chunk.js": "/company-dashboard/static/js/787.32fb0cf0.chunk.js",
+    "static/media/banner.jpg": "/company-dashboard/static/media/banner.124282adaf44efc05371.jpg",
+    "static/media/mig-logo.png": "/company-dashboard/static/media/mig-logo.33f89ea0e5e373b87b0a.png",
+    "index.html": "/company-dashboard/index.html",
+    "main.01e147cf.css.map": "/company-dashboard/static/css/main.01e147cf.css.map",
+    "main.886b10ea.js.map": "/company-dashboard/static/js/main.886b10ea.js.map",
+    "787.32fb0cf0.chunk.js.map": "/company-dashboard/static/js/787.32fb0cf0.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.01e147cf.css",
+    "static/js/main.886b10ea.js"
+  ]
+}
