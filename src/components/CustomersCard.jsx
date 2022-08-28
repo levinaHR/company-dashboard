@@ -1,5 +1,5 @@
 import { DeleteOutlined, EditOutlined, PlusOutlined } from '@ant-design/icons';
-import { Input } from 'antd';
+import { Input, message } from 'antd';
 import { Button, Card, Col, Row, Space, Table, Tag, Typography } from 'antd';
 import React, { Fragment, useEffect, useState } from 'react';
 import APIConfig from '../api/APIConfig';
@@ -100,7 +100,13 @@ export default function CustomersCard() {
       setDataSource(data.data);
       setIsLoading(false);
     } catch (e) {
-      console.log(e);
+      // console.log(e);
+      message.error('Gagal memuat pelanggan');
+      if (e.response.data === 'Unauthorized.') {
+        message.error('[' + e.response.status + '] ' + e.response.data);
+      } else {
+        message.error('[' + e.response.status + '] ' + e.response.data.message);
+      }
       setIsLoading(false);
     }
   }

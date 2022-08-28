@@ -1,4 +1,4 @@
-import { Button, Form, Input, Modal, Select, Switch } from 'antd';
+import { Button, Form, Input, Modal, Switch, message } from 'antd';
 import React, { useState } from 'react';
 import APIConfig from '../api/APIConfig';
 
@@ -12,14 +12,8 @@ function Capitalize(str) {
 }
 
 export default function CustomersModalForm(props) {
-  const {
-    customer,
-    visible,
-    isCreate,
-    isUpdate,
-    onCancel,
-    refreshData,
-  } = props;
+  const { customer, visible, isCreate, isUpdate, onCancel, refreshData } =
+    props;
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [fields, setFields] = useState([
@@ -53,34 +47,41 @@ export default function CustomersModalForm(props) {
     setFields(newFields);
   }
 
-  function onFinish(values) {
-    console.log('Success:', values);
-    handleSubmit(values);
-  }
+  // function onFinish(values) {
+  //   console.log('Success:', values);
+  //   handleSubmit(values);
+  // }
 
-  function onFinishFailed(errorInfo) {
-    console.log('Failed:', errorInfo);
-  }
+  // function onFinishFailed(errorInfo) {
+  //   console.log('Failed:', errorInfo);
+  // }
 
   async function handleSubmit(values) {
     try {
       setIsSubmitting(true);
       if (isCreate) {
         const { data } = await APIConfig.post('/customers', values);
-        console.log(data);
+        // console.log(data);
+        message.success(data.message);
       }
       if (isUpdate) {
         const { data } = await APIConfig.put('/customers', {
           id: customer.id,
           ...values,
         });
-        console.log(data);
+        // console.log(data);
+        message.success(data.message);
       }
       setIsSubmitting(false);
       onCancel();
       refreshData();
     } catch (e) {
-      console.log(e);
+      // console.log(e);
+      if (e.response.data === 'Unauthorized.') {
+        message.error('[' + e.response.status + '] ' + e.response.data);
+      } else {
+        message.error('[' + e.response.status + '] ' + e.response.data.message);
+      }
       setIsSubmitting(false);
     }
   }
@@ -112,8 +113,8 @@ export default function CustomersModalForm(props) {
         onFieldsChange={(_, allFields) => {
           onChange(allFields);
         }}
-        onFinish={onFinish}
-        onFinishFailed={onFinishFailed}
+        onFinish={handleSubmit}
+        // onFinishFailed={onFinishFailed}
       >
         {fields.map((field) =>
           field.name[0] === 'status' ? (

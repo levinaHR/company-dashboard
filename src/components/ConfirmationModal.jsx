@@ -1,4 +1,4 @@
-import { Button, Modal, Typography } from 'antd';
+import { Button, Modal, Typography, message } from 'antd';
 import React, { useState } from 'react';
 import APIConfig from '../api/APIConfig';
 
@@ -20,12 +20,18 @@ export default function ConfirmationModal(props) {
       const { data } = await APIConfig.delete('/customers', {
         data: { id: id },
       });
-      console.log(data);
+      // console.log(data);
+      message.success(data.message);
       setIsDeleting(false);
       onCancel();
       refreshData();
     } catch (e) {
-      console.log(e);
+      // console.log(e)
+      if (e.response.data === 'Unauthorized.') {
+        message.error('[' + e.response.status + '] ' + e.response.data);
+      } else {
+        message.error('[' + e.response.status + '] ' + e.response.data.message);
+      }
       setIsDeleting(false);
     }
   }
