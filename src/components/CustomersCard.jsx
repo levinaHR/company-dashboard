@@ -1,4 +1,5 @@
 import { DeleteOutlined, EditOutlined, PlusOutlined } from '@ant-design/icons';
+import { Input } from 'antd';
 import { Button, Card, Col, Row, Space, Table, Tag, Typography } from 'antd';
 import React, { Fragment, useEffect, useState } from 'react';
 import APIConfig from '../api/APIConfig';
@@ -6,6 +7,7 @@ import ConfirmationModal from './ConfirmationModal';
 import CustomersModalForm from './CustomersModalForm';
 
 const { Title, Text } = Typography;
+const { Search } = Input;
 
 const styles = {
   container: {
@@ -20,9 +22,10 @@ const styles = {
 };
 
 export default function CustomersCard() {
-  const [isLoading, setIsLoading] = useState(true);
+  const [dataSource, setDataSource] = useState([]);
   const [customerList, setCustomerList] = useState([]);
   const [customer, setCustomer] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
   const [isCreate, setIsCreate] = useState(false);
   const [isUpdate, setIsUpdate] = useState(false);
   const [isDelete, setIsDelete] = useState(false);
@@ -32,6 +35,7 @@ export default function CustomersCard() {
       title: 'Name',
       dataIndex: 'name',
       key: 'name',
+      sorter: (a, b) => a.name.localeCompare(b.name),
     },
     {
       title: 'Address',
@@ -57,6 +61,11 @@ export default function CustomersCard() {
       title: 'Status',
       dataIndex: 'status',
       key: 'status',
+      filters: [
+        { text: 'Active', value: true },
+        { text: 'Inactive', value: false },
+      ],
+      onFilter: (value, record) => record.status === value,
       render: (_, { status }) =>
         status ? (
           <Tag color="green">Active</Tag>
@@ -88,6 +97,7 @@ export default function CustomersCard() {
       setIsLoading(true);
       const { data } = await APIConfig.get('/customers');
       setCustomerList(data.data);
+      setDataSource(data.data);
       setIsLoading(false);
     } catch (e) {
       console.log(e);
@@ -124,6 +134,23 @@ export default function CustomersCard() {
     setCustomer(null);
   }
 
+  function handleSearch(value) {
+    if (value !== '') {
+      const filteredData = customerList.filter((obj) =>
+        Object.keys(obj).some((key) =>
+          obj[key].toString().toLowerCase().includes(value.toLowerCase())
+        )
+      );
+      setDataSource(filteredData);
+    }
+  }
+
+  function handleSearchInputChange({ target }) {
+    if (target.value === '') {
+      setDataSource(customerList);
+    }
+  }
+
   useEffect(() => {
     loadAllCustomers();
   }, []);
@@ -137,18 +164,30 @@ export default function CustomersCard() {
               <Title level={4}>Pelanggan</Title>
             </Col>
             <Col>
-              <Button
-                type="primary"
-                icon={<PlusOutlined />}
-                onClick={handleCreate}
-              >
-                Tambah Pelanggan
-              </Button>
+              <Row gutter={24}>
+                <Col>
+                  <Search
+                    placeholder="Cari Pelanggan"
+                    allowClear
+                    onSearch={handleSearch}
+                    onChange={handleSearchInputChange}
+                  />
+                </Col>
+                <Col>
+                  <Button
+                    type="primary"
+                    icon={<PlusOutlined />}
+                    onClick={handleCreate}
+                  >
+                    Tambah Pelanggan
+                  </Button>
+                </Col>
+              </Row>
             </Col>
           </Row>
           <Table
             loading={isLoading}
-            dataSource={customerList}
+            dataSource={dataSource}
             columns={columns}
             scroll={{ x: true }}
           />
