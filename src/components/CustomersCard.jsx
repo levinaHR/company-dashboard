@@ -1,6 +1,7 @@
 import { DeleteOutlined, EditOutlined, PlusOutlined } from '@ant-design/icons';
 import { Input, message } from 'antd';
 import { Button, Card, Col, Row, Space, Table, Tag, Typography } from 'antd';
+import axios from 'axios';
 import React, { Fragment, useEffect, useState } from 'react';
 import APIConfig from '../api/APIConfig';
 import ConfirmationModal from './ConfirmationModal';
@@ -25,6 +26,7 @@ export default function CustomersCard() {
   const [dataSource, setDataSource] = useState([]);
   const [customerList, setCustomerList] = useState([]);
   const [customer, setCustomer] = useState(null);
+  const [loggedIn, setLoggedIn] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [isCreate, setIsCreate] = useState(false);
   const [isUpdate, setIsUpdate] = useState(false);
@@ -92,6 +94,24 @@ export default function CustomersCard() {
     },
   ];
 
+  async function login() {
+    try {
+      const { data } = await APIConfig.post('/auth/login', {
+        email: 'akun11@mig.id',
+        password: 'D1B3B1F7',
+      });
+      APIConfig.defaults.headers.common['Authorization'] = data.access_token;
+      setLoggedIn(true);
+    } catch (e) {
+      message.error('Gagal login');
+      if (e.response.data === 'Unauthorized.') {
+        message.error('[' + e.response.status + '] ' + e.response.data);
+      } else {
+        message.error('[' + e.response.status + '] ' + e.response.data.message);
+      }
+    }
+  }
+
   async function loadAllCustomers() {
     try {
       setIsLoading(true);
@@ -158,8 +178,14 @@ export default function CustomersCard() {
   }
 
   useEffect(() => {
-    loadAllCustomers();
+    login();
   }, []);
+
+  useEffect(() => {
+    if (loggedIn) {
+      loadAllCustomers();
+    }
+  }, [loggedIn]);
 
   return (
     <Fragment>
