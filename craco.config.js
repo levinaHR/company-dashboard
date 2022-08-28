@@ -9,6 +9,7 @@ module.exports = {
             modifyVars: {
               '@body-background': '#F4FAF5',
               '@layout-body-background': '#F4FAF5',
+              '@layout-sider-background': '#FFFFFF',
               '@primary-color': '#35763B',
             },
             javascriptEnabled: true,

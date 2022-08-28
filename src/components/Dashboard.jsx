@@ -6,6 +6,7 @@ import CustomersCard from './CustomersCard';
 import LocationCard from './LocationCard';
 import ProfileCard from './ProfileCard';
 import RelationCard from './RelationCard';
+import Sidebar from './Sidebar';
 import Topbar from './Topbar';
 
 const { Header, Footer, Sider, Content } = Layout;
@@ -24,7 +25,7 @@ export default function Dashboard() {
 
   return (
     <Layout style={styles.container}>
-      {/* <Sider></Sider> */}
+      <Sidebar />
       <Layout>
         <Content style={styles.content}>
           <Row gutter={gutter}>
