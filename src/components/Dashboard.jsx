@@ -27,6 +27,7 @@ export default function Dashboard() {
     <Layout style={styles.container}>
       <Sidebar />
       <Layout>
+        <Topbar />
         <Content style={styles.content}>
           <Row gutter={gutter}>
             <Col span={24}>

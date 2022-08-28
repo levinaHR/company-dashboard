@@ -13,9 +13,8 @@ import { Affix, Layout, Menu } from 'antd';
 import SidebarLogo from '../images/sidebar-logo.png';
 import React from 'react';
 import { CodeSandboxOutlined, SlackOutlined } from '@ant-design/icons';
-import { style } from '@mui/system';
 
-const { Header, Footer, Sider, Content } = Layout;
+const { Sider } = Layout;
 
 const styles = {
   container: {
